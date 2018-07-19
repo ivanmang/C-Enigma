@@ -5,42 +5,31 @@
 #include <stdexcept>
 #include "Rotors.h"
 #include <iostream>
+#include <cstring>
 
-char *config;
-
-Rotors::Rotors(char *config) {
-    this->config = config;
+Rotors::Rotors(char *token) {
+    this->token = token;
 }
 
-char config_map[26];
+int config_map[25];
+int new_config_map[25];
 
-void Rotors::printconfig(char *config) {
-    removeSpaces(config);
-    printf("%s\n",config);
-    printf("%d",'A'+1);
-}
-
-char* Rotors::read_config(char *config) {
-    int i = 0, j = 0;
-    while (config[i]){
-        if(config[i] != ' '){
-            if(config[i+1] != ' '){
-                config_map[i] = config[i];
-            }
-        }
-        i++;
+int* Rotors::store_config() {
+    int i = 0;
+    while(token){
+        config_map[i] = atoi(token);
+        token = strtok(NULL, " ");
     }
     return config_map;
 }
 
-char *Rotors::removeSpaces(char *str) {
-    int i = 0, j = 0;
-    while (str[i])
-    {
-        if (str[i] != ' ')
-            str[j++] = str[i];
-        i++;
+int *Rotors::map_forward(int *config_map) {
+    return config_map;
+}
+
+int *Rotors::map_backward(int *config_map) {
+    for(int i = 0; i <25 ; i++){
+        new_config_map[config_map[i]] = i;
     }
-    str[j] = '\0';
-    return str;
+    return new_config_map;
 }

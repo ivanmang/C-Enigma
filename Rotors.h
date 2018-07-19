@@ -9,14 +9,13 @@
 class Rotors {
 
 private:
-    char* config;
+    char* token;
 
 public:
-    Rotors(char* config);
-    void printconfig(char* config);
-    char* read_config(char* config);
-    char *removeSpaces(char *str);
-
+    Rotors(char* token);
+    int* store_config();
+    int* map_forward(int* config_map);
+    int* map_backward(int* config_map);
 
 };
 

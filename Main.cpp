@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "Rotors.h"
 
 using namespace std;
@@ -21,9 +22,10 @@ int main(int argc, char **argv) {
         }
     }
     infile.getline(config, sizeof(config));
+    char* token = strtok(config," ");
 
-    Rotors *rotors = new Rotors(config);
-    rotors->printconfig(config);
+    Rotors *rotors = new Rotors(token);
+    rotors->store_config();
 
 
     return 0;
