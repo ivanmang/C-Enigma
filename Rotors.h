@@ -7,11 +7,16 @@
 
 
 class Rotors {
-    Rotors(char* input, char* ouput);
 
-    private:
-    char* input;
-    char* output;
+private:
+    char* config;
+
+public:
+    Rotors(char* config);
+    void printconfig(char* config);
+    char* read_config(char* config);
+    char *removeSpaces(char *str);
+
 
 };
 
