@@ -37,20 +37,21 @@ int main(int argc, char **argv) {
     rotor_file.getline(rotor_config, sizeof(rotor_config));
     plugboard_file.getline(plug_config, sizeof(plug_config));
 
-    string input;
+    char input[100];
     cin >> ws >> input;
 
-    Rotors *rotors = new Rotors(rotor_config);
-    int* map = rotors->tokeniser();
-    rotors->map_backward(map);
-    Reflector *reflector = new Reflector();
-    reflector->reflect(map);
+//    Rotors *rotors = new Rotors(rotor_config);
+//    int* map = rotors->tokeniser();
+//    rotors->map_backward(map);
+//    Reflector *reflector = new Reflector();
+//    reflector->reflect(map);
     Plugboard *plugboard = new Plugboard(plug_config);
     int* config = plugboard->tokeniser();
-    plugboard->map(config,map);
-    char h = plugboard->num_to_char(1);
+    char* output = plugboard->input_to_string(config,input);
 
-    cout << h;
+
+    cout << output;
+
 
 
 
