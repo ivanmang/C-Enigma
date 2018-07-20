@@ -25,9 +25,8 @@ int* Rotors::tokeniser() {
     return config_map;
 }
 
-int *Rotors::map_forward(int *config_map) {
-    return config_map;
-}
+
+
 
 int *Rotors::map_backward(int *config_map) {
     for(int i = 0; i <26 ; i++){
@@ -38,4 +37,38 @@ int *Rotors::map_backward(int *config_map) {
         }
     }
     return new_config_map;
+}
+
+char Rotors::num_to_char(int num) {
+    return (char) 65 + num;
+}
+
+int Rotors::char_to_num(char c) {
+    return (int) c - 65;
+}
+
+char *Rotors::input_to_string(int *config, char *input) {
+    for (int i = 0; input[i] != '\0'; i++) {
+        output[i] = find_char_mapped_to(input[i], config);
+    }
+    return output;
+}
+
+char *Rotors::input_to_string_back(int *config, char *input) {
+    int* back_config = map_backward(config);
+    for (int i = 0; input[i] != '\0'; i++) {
+        output[i] = find_char_mapped_to(input[i], back_config);
+    }
+    return output;
+}
+
+char Rotors::find_char_mapped_to(char letter, int *config) {
+    //Find the position of the letter
+    int char_index = char_to_num(letter);
+    //Get the letter it mapped to
+    for(int i = 0; config[i-1]!='\0';i++){
+        if(char_index == i){
+            return num_to_char(config[i]);
+        }
+    }
 }

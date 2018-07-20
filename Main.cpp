@@ -40,14 +40,25 @@ int main(int argc, char **argv) {
     char input[100];
     cin >> ws >> input;
 
-//    Rotors *rotors = new Rotors(rotor_config);
-//    int* map = rotors->tokeniser();
-//    rotors->map_backward(map);
-//    Reflector *reflector = new Reflector();
-//    reflector->reflect(map);
+    //Config
     Plugboard *plugboard = new Plugboard(plug_config);
-    int* config = plugboard->tokeniser();
-    char* output = plugboard->input_to_string(config,input);
+    int* plug_config_tok = plugboard->tokeniser();
+
+    Rotors *rotors = new Rotors(rotor_config);
+    int* rotor_config_tok = rotors->tokeniser();
+    Reflector *reflector = new Reflector();
+
+
+    char* plug_out = plugboard->input_to_string(plug_config_tok,input);
+
+    //char* rotor_out = rotors->input_to_string(rotor_config_tok,plug_out);
+
+    char* reflect_out = reflector->reflect(plug_out);
+
+    //char* rotor_back_out = rotors->input_to_string_back(rotor_config_tok,reflect_out);
+
+    char* output = plugboard->input_to_string(plug_config_tok,reflect_out);
+
 
 
     cout << output;

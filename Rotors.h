@@ -12,12 +12,17 @@ private:
     char* rotor_config;
     int config_map[26];
     int new_config_map[26];
+    char output[100];
 
 public:
     Rotors(char* token);
     int* tokeniser();
-    int* map_forward(int* config_map);
+    char num_to_char(int num);
+    int char_to_num(char c);
     int* map_backward(int* config_map);
+    char* input_to_string(int* config, char* input);
+    char* input_to_string_back(int* config, char* input);
+    char find_char_mapped_to(char letter, int* config);
 
 };
 

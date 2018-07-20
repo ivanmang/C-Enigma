@@ -9,11 +9,14 @@
 class Reflector {
 
 private:
+    char output[100];
 
 
 public:
     Reflector();
-    int* reflect(int* config_map);
+    char* reflect(char* input);
+    char num_to_char(int num);
+    int char_to_num(char c);
 };
 
 

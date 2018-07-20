@@ -10,11 +10,9 @@ class Plugboard {
 private:
     char* plug_config;
     int config_map[26];
-    int char_map[26];
     char output[100];
 public:
     Plugboard(char* plug_config);
-    int* map(int* config_map, int* map);
     int* tokeniser();
     char num_to_char(int num);
     int char_to_num(char c);

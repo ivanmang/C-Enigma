@@ -23,18 +23,13 @@ int* Plugboard::tokeniser() {
     return config_map;
 }
 
-int *Plugboard::map(int *config_map, int* map) {
-    for(int i = 0; i < config_map[i] != '\0'; i+=2){
-        int first = config_map[i];
-        int second = config_map[i+1];
-        map[first] = second;
-        map[second] = first;
-    }
-}
-
 
 char Plugboard::num_to_char(int num) {
     return (char) 65 + num;
+}
+
+int Plugboard::char_to_num(char c) {
+    return (int) c - 65;
 }
 
 char *Plugboard::input_to_string(int *config, char* input) {
@@ -52,28 +47,24 @@ char Plugboard::find_char_mapped_to(char letter, int* config) {
     if(mapped_char != NULL){
         return num_to_char(mapped_char);
     } else{
-        //if this letter don't map to anything, return original
+        //if this letter don't map to anything, return original letter
         return letter;
     }
 }
 
-int Plugboard::char_to_num(char c) {
-    return (int) c - 65;
-}
+
 
 int Plugboard::find_if_config_contain(int char_index, int *config) {
-    for(int i = 0; config[i] != '\0' ; i+=2){
+    for(int i = 0; config[i-1] != '\0' ; i+=2){
         int first = config[i];
         int second = config[i+1];
         if(first == char_index){
             return second;
         } else if(second == char_index){
             return first;
-        }else {
-            return NULL;
         }
     }
-    return 0;
+    return NULL;
 }
 
 
