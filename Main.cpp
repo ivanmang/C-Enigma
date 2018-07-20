@@ -4,28 +4,54 @@
 #include <fstream>
 #include <cstring>
 #include "Rotors.h"
+#include "Reflector.h"
+#include "Plugboard.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
-    fstream infile;
-    char config[100];
+    fstream rotor_file;
+    fstream plugboard_file;
+    char rotor_config[100];
+    char plug_config[100];
     string dir = "./";
+
 
     int i = 1;
     for (i; i < argc - 1; i++) {
         string dir1 = dir+argv[i];
-        infile.open(dir1,ios::in);
-        if (!infile) {
+        rotor_file.open(dir1,ios::in);
+        if (!rotor_file) {
             cerr << "Can't open file!\n";
             exit(1);
         }
     }
-    infile.getline(config, sizeof(config));
-    char* token = strtok(config," ");
 
-    Rotors *rotors = new Rotors(token);
-    rotors->store_config();
+    string plugdir = dir + argv[i];
+    plugboard_file.open(plugdir,ios::in);
+    if (!plugboard_file) {
+        cerr << "Can't open file!\n";
+        exit(1);
+    }
+
+    rotor_file.getline(rotor_config, sizeof(rotor_config));
+    plugboard_file.getline(plug_config, sizeof(plug_config));
+
+    string input;
+    cin >> ws >> input;
+
+    Rotors *rotors = new Rotors(rotor_config);
+    int* map = rotors->tokeniser();
+    rotors->map_backward(map);
+    Reflector *reflector = new Reflector();
+    reflector->reflect(map);
+    Plugboard *plugboard = new Plugboard(plug_config);
+    int* config = plugboard->tokeniser();
+    plugboard->map(config,map);
+    char h = plugboard->num_to_char(1);
+
+    cout << h;
+
 
 
     return 0;

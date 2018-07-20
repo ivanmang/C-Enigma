@@ -9,11 +9,13 @@
 class Rotors {
 
 private:
-    char* token;
+    char* rotor_config;
+    int config_map[26];
+    int new_config_map[26];
 
 public:
     Rotors(char* token);
-    int* store_config();
+    int* tokeniser();
     int* map_forward(int* config_map);
     int* map_backward(int* config_map);
 
