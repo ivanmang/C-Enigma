@@ -69,4 +69,3 @@ int Plugboard::find_if_config_contain(int char_index, int *config) {
 
 
 
-

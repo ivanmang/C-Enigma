@@ -11,7 +11,8 @@ class Rotors {
 private:
     char* rotor_config;
     int config_map[26];
-    int new_config_map[26];
+    int back_config_map[26];
+    int rotate_config_map[26];
     char output[100];
 
 public:
@@ -23,6 +24,8 @@ public:
     char* input_to_string(int* config, char* input);
     char* input_to_string_back(int* config, char* input);
     char find_char_mapped_to(char letter, int* config);
+    int* rotate_config(int* config, int* map);
+    void print_map(int* config);
 
 };
 

@@ -51,17 +51,17 @@ int main(int argc, char **argv) {
 
     char* plug_out = plugboard->input_to_string(plug_config_tok,input);
 
-    //char* rotor_out = rotors->input_to_string(rotor_config_tok,plug_out);
+    char* rotor_out = rotors->input_to_string(rotor_config_tok,plug_out);
 
-    char* reflect_out = reflector->reflect(plug_out);
+    //char* reflect_out = reflector->reflect(rotor_out);
 
     //char* rotor_back_out = rotors->input_to_string_back(rotor_config_tok,reflect_out);
 
-    char* output = plugboard->input_to_string(plug_config_tok,reflect_out);
+    //char* output = plugboard->input_to_string(plug_config_tok,rotor_back_out);
 
 
 
-    cout << output;
+    cout << rotor_out;
 
 
 
