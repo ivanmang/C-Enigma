@@ -5,27 +5,29 @@
 #ifndef C_ENIGMA_ROTORS_H
 #define C_ENIGMA_ROTORS_H
 
+#include <vector>
+using namespace std;
 
 class Rotors {
 
 private:
     char* rotor_config;
-    int config_map[26];
-    int back_config_map[26];
-    int rotate_config_map[26];
+    vector<int> config_map;
+    vector<int> back_config_map;
+    vector<int> rotate_config_map;
     char output[100];
 
 public:
     Rotors(char* token);
-    int* tokeniser();
+    vector<int> tokeniser();
     char num_to_char(int num);
     int char_to_num(char c);
-    int* map_backward(int* config_map);
-    char* input_to_string(int* config, char* input);
-    char* input_to_string_back(int* config, char* input);
-    char find_char_mapped_to(char letter, int* config);
-    int* rotate_config(int* config, int* map);
-    void print_map(int* config);
+    vector<int> map_backward(vector<int> config_map);
+    char* input_to_string(vector<int> config, char* input);
+    char* input_to_string_back(vector<int> config, char* input);
+    char find_char_mapped_to(char letter, vector<int> config);
+    vector<int> rotate_config(vector<int> config);
+    void print_map(vector<int> config);
 
 };
 

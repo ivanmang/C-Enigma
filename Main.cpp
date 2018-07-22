@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <vector>
 #include "Rotors.h"
 #include "Reflector.h"
 #include "Plugboard.h"
@@ -42,10 +43,10 @@ int main(int argc, char **argv) {
 
     //Config
     Plugboard *plugboard = new Plugboard(plug_config);
-    int* plug_config_tok = plugboard->tokeniser();
+    vector<int> plug_config_tok = plugboard->tokeniser();
 
     Rotors *rotors = new Rotors(rotor_config);
-    int* rotor_config_tok = rotors->tokeniser();
+    vector<int> rotor_config_tok = rotors->tokeniser();
     Reflector *reflector = new Reflector();
 
 
@@ -53,15 +54,15 @@ int main(int argc, char **argv) {
 
     char* rotor_out = rotors->input_to_string(rotor_config_tok,plug_out);
 
-    //char* reflect_out = reflector->reflect(rotor_out);
+    char* reflect_out = reflector->reflect(plug_out);
 
     //char* rotor_back_out = rotors->input_to_string_back(rotor_config_tok,reflect_out);
 
-    //char* output = plugboard->input_to_string(plug_config_tok,rotor_back_out);
+    char* output = plugboard->input_to_string(plug_config_tok,reflect_out);
 
 
 
-    cout << rotor_out;
+    cout << output;
 
 
 
