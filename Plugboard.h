@@ -15,12 +15,11 @@ private:
     vector<int> config_map;
     char output[100];
 public:
-    Plugboard(char* plug_config);
-    std::vector<int> tokeniser();
+    Plugboard();
+    std::vector<int> tokeniser(char* plug_config);
     char num_to_char(int num);
     int char_to_num(char c);
-    char* input_to_string(vector<int> config, char* input);
-    char find_char_mapped_to(char letter, vector<int> config);
+    char find_char_mapped_to(char input, vector<int> config);
     int find_if_config_contain(int char_index, vector<int> config);
 };
 

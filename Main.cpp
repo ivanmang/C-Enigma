@@ -38,31 +38,33 @@ int main(int argc, char **argv) {
     rotor_file.getline(rotor_config, sizeof(rotor_config));
     plugboard_file.getline(plug_config, sizeof(plug_config));
 
-    char input[100];
-    cin >> ws >> input;
+    string input;
+    string output;
+    cin >> ws >>input;
 
     //Config
-    //Plugboard *plugboard = new Plugboard(plug_config);
-    //vector<int> plug_config_tok = plugboard->tokeniser();
+    Plugboard *plugboard = new Plugboard();
+    vector<int> plug_config_tok = plugboard->tokeniser(plug_config);
 
     Rotors *rotors = new Rotors();
     vector<int> rotor_config_tok = rotors->tokeniser(rotor_config);
-    //Reflector *reflector = new Reflector();
+    Reflector *reflector = new Reflector();
+    for(int c = 0 ; input[c] != '\0'; c++){
+        char plug_out = plugboard->find_char_mapped_to(input[c],plug_config_tok);
+
+//        char* rotor_out = rotors->input_to_string(rotor_config_tok,plug_out);
+//
+//        char* reflect_out = reflector->reflect(rotor_out);
+//
+//        char* rotor_back_out = rotors->input_to_string_back(rotor_config_tok,reflect_out);
+//
+        //char* output = plugboard->find_char_mapped_to(plug_config_tok,rotor_back_out);
+
+        output.push_back(plug_out);
+    }
 
 
-    //char* plug_out = plugboard->input_to_string(plug_config_tok,input);
-
-    char* rotor_out = rotors->input_to_string(rotor_config_tok,input);
-
-    //char* reflect_out = reflector->reflect(plug_out);
-
-    //char* rotor_back_out = rotors->input_to_string_back(rotor_config_tok,reflect_out);
-
-    //char* output = plugboard->input_to_string(plug_config_tok,reflect_out);
-
-
-
-   // cout << rotor_out;
+    cout << output;
 
 
 

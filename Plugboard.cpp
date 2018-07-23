@@ -8,17 +8,16 @@
 #include <vector>
 #include "Plugboard.h"
 
-Plugboard::Plugboard(char *plug_config) {
-    this->plug_config = plug_config;
+Plugboard::Plugboard() {
 }
 
 
-std::vector<int> Plugboard::tokeniser() {
-    char* plug_token = strtok(plug_config," ");
+vector<int> Plugboard::tokeniser(char* rotor_config) {
+    char* rotor_token = strtok(rotor_config," ");
     int i = 0;
-    while(plug_token){
-        config_map.push_back(atoi(plug_token));
-        plug_token = strtok(NULL, " ");
+    while(rotor_token){
+        config_map.push_back(atoi(rotor_token));
+        rotor_token = strtok(NULL, " ");
         i++;
     }
     return config_map;
@@ -33,32 +32,26 @@ int Plugboard::char_to_num(char c) {
     return (int) c - 65;
 }
 
-char *Plugboard::input_to_string(vector<int> config, char* input) {
-    for(int i = 0; input[i] != '\0' ;i++){
-        output[i] = find_char_mapped_to(input[i], config);
-    }
-    return output;
-}
 
-char Plugboard::find_char_mapped_to(char letter, vector<int> config) {
+char Plugboard::find_char_mapped_to(char input, vector<int> config) {
     //Find the position of the letter
-    int char_index = char_to_num(letter);
+    int char_index = char_to_num(input);
     //Get the letter it mapped to
     int mapped_char = find_if_config_contain(char_index,config);
     if(mapped_char != NULL){
         return num_to_char(mapped_char);
     } else{
         //if this letter don't map to anything, return original letter
-        return letter;
+        return input;
     }
 }
 
 
-
 int Plugboard::find_if_config_contain(int char_index, vector<int> config) {
     for(int i = 0; i < config.size() ; i+=2){
-        int first = config[i];
-        int second = config[i+1];
+        int first = config.at(i);
+        int second = config.at(i+1);
+        //printf("config %d %d\n",config.at(i),  config.at(i+1));
         if(first == char_index){
             return second;
         } else if(second == char_index){

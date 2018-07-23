@@ -12,8 +12,7 @@ class Rotors {
 
 private:
     vector<int> config_map;
-    vector<int> back_config_map;
-    vector<int> rotate_config_map;
+    vector<int> back_map;
     char output[100];
 
 public:

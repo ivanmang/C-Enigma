@@ -30,16 +30,20 @@ vector<int> Rotors::tokeniser(char* rotor_config) {
 
 
 
-//vector<int> Rotors::map_backward(vector<int> config_map) {
-//    for(int i = 0; i <26 ; i++){
-//        for(int j = 0; j <26; j++){
-//            if(i == config_map[j]){
-//                back_config_map[i] = j;
-//            }
-//        }
-//    }
-//    return back_config_map;
-//}
+vector<int> Rotors::map_backward(vector<int> config_map) {
+
+    for(int i = 0; i < config_map.size(); i++){
+        vector<int>::iterator num = find(config_map.begin(),config_map.end(), i);
+        if(num != config_map.end()){
+            int index = distance(config_map.begin(),num);
+            back_map.push_back(index);
+        }else{
+            cerr << "Missing elements when rotor map backwards";
+        }
+
+    }
+    return back_map;
+}
 
 char Rotors::num_to_char(int num) {
     return (char) 65 + num;
@@ -52,21 +56,21 @@ int Rotors::char_to_num(char c) {
 char *Rotors::input_to_string(vector<int> config, char *input) {
     for (int i = 0; input[i] != '\0'; i++) {
         //print_map(rotated_map);
-        printf("input[i]: %c\n",input[i]);
+        //printf("input[i]: %c\n",input[i]);
         output[i] = find_char_mapped_to(input[i], config);
-        printf("output[i]: %c\n",output[i]);
+        //printf("output[i]: %c\n",output[i]);
         config = rotate_config(config);
     }
     return output;
 }
 
-//char *Rotors::input_to_string_back(vector<int> config, char *input) {
-//    vector<int> back_config = map_backward(config);
-//    for (int i = 0; input[i] != '\0'; i++) {
-//        output[i] = find_char_mapped_to(input[i], back_config);
-//    }
-//    return output;
-//}
+char *Rotors::input_to_string_back(vector<int> config, char *input) {
+    vector<int> back_config = map_backward(config);
+    for (int i = 0; input[i] != '\0'; i++) {
+        output[i] = find_char_mapped_to(input[i], back_config);
+    }
+    return output;
+}
 
 char Rotors::find_char_mapped_to(char letter, vector<int> config) {
     //Find the position of the letter
