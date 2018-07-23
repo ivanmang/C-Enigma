@@ -11,15 +11,14 @@ using namespace std;
 class Rotors {
 
 private:
-    char* rotor_config;
     vector<int> config_map;
     vector<int> back_config_map;
     vector<int> rotate_config_map;
     char output[100];
 
 public:
-    Rotors(char* token);
-    vector<int> tokeniser();
+    Rotors();
+    vector<int> tokeniser(char* rotor_config);
     char num_to_char(int num);
     int char_to_num(char c);
     vector<int> map_backward(vector<int> config_map);
