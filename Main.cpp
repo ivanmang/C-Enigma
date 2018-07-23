@@ -14,6 +14,7 @@ int main(int argc, char **argv) {
     fstream plugboard_file;
     char rotor_config[100];
     char plug_config[100];
+    bool have_rotor = false;
     string x = "./";
 
 
@@ -27,6 +28,8 @@ int main(int argc, char **argv) {
                 cerr << "Can't open file!\n";
                 exit(1);
             }
+            rotor_file.getline(rotor_config, sizeof(rotor_config));
+            have_rotor = true;
         } else if(dir.compare(dir.size()-3,dir.size(),".pb") == 0){
             //This is a plugboards file
             plugboard_file.open(dir,ios::in);
@@ -34,12 +37,13 @@ int main(int argc, char **argv) {
                 cerr << "Can't open file!\n";
                 exit(1);
             }
+            plugboard_file.getline(plug_config, sizeof(plug_config));
         }
     }
 
 
-    rotor_file.getline(rotor_config, sizeof(rotor_config));
-    plugboard_file.getline(plug_config, sizeof(plug_config));
+
+
 
     string input;
     string output;
@@ -49,10 +53,18 @@ int main(int argc, char **argv) {
     Plugboard *plugboard = new Plugboard();
     vector<int> plug_config_tok = plugboard->tokeniser(plug_config);
 
+
     Rotors *rotors = new Rotors();
-    vector<int> rotor_config_tok = rotors->tokeniser(rotor_config);
+    vector<int> config;
+    if(have_rotor){
+        vector<int> rotor_config_tok = rotors->tokeniser(rotor_config);
+        config = rotor_config_tok;
+    } else {
+        config.clear();
+    }
+
     Reflector *reflector = new Reflector();
-    vector<int> config = rotor_config_tok;
+
 
     for(int c = 0 ; input[c] != '\0'; c++){
 

@@ -31,6 +31,9 @@ vector<int> Rotors::tokeniser(char* rotor_config) {
 
 
 vector<int> Rotors::map_backward(vector<int> config_map) {
+    if(config_map.empty()){
+        return config_map;
+    }
     back_map.clear();
     for(int i = 0; i < config_map.size(); i++){
         vector<int>::iterator num = find(config_map.begin(),config_map.end(), i);
@@ -71,6 +74,9 @@ char Rotors::input_to_back(vector<int> config, char input) {
 }
 
 char Rotors::find_char_mapped_to(char letter, vector<int> config) {
+    if(config.empty()){
+        return letter;
+    }
     //Find the position of the letter
     int char_index = char_to_num(letter);
     //printf("char index %d\n",char_index);
@@ -84,6 +90,9 @@ char Rotors::find_char_mapped_to(char letter, vector<int> config) {
 }
 
 vector<int> Rotors::rotate_config(vector<int> config) {
+    if(config.empty()){
+        return config;
+    }
     vector<int>::iterator it;
     it = config.begin();
     int last_elem = config.back();
