@@ -31,7 +31,7 @@ vector<int> Rotors::tokeniser(char* rotor_config) {
 
 
 vector<int> Rotors::map_backward(vector<int> config_map) {
-
+    back_map.clear();
     for(int i = 0; i < config_map.size(); i++){
         vector<int>::iterator num = find(config_map.begin(),config_map.end(), i);
         if(num != config_map.end()){
@@ -42,6 +42,7 @@ vector<int> Rotors::map_backward(vector<int> config_map) {
         }
 
     }
+    //print_map(back_map);
     return back_map;
 }
 
@@ -59,7 +60,7 @@ char *Rotors::input_to_string(vector<int> config, char *input) {
         //printf("input[i]: %c\n",input[i]);
         output[i] = find_char_mapped_to(input[i], config);
         //printf("output[i]: %c\n",output[i]);
-        config = rotate_config(config);
+        //config = rotate_config(config);
     }
     return output;
 }

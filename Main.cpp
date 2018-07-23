@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
-#include <cstring>
 #include <vector>
 #include "Rotors.h"
 #include "Reflector.h"
@@ -61,13 +60,13 @@ int main(int argc, char **argv) {
 
         char rotor_out = rotors->find_char_mapped_to(plug_out,config);
 
-        config = rotors->rotate_config(config);
-
         char reflect_out = reflector->reflect(rotor_out);
 
         char rotor_back_out = rotors->input_to_back(config,reflect_out);
 
         output.push_back(plugboard->find_char_mapped_to(rotor_back_out,plug_config_tok));
+
+        config = rotors->rotate_config(config);
     }
 
 
