@@ -53,14 +53,19 @@ int main(int argc, char **argv) {
     Rotors *rotors = new Rotors();
     vector<int> rotor_config_tok = rotors->tokeniser(rotor_config);
     Reflector *reflector = new Reflector();
+    vector<int> config = rotor_config_tok;
+
     for(int c = 0 ; input[c] != '\0'; c++){
+
         char plug_out = plugboard->find_char_mapped_to(input[c],plug_config_tok);
 
-        char rotor_out = rotors->find_char_mapped_to(plug_out,rotor_config_tok);
+        char rotor_out = rotors->find_char_mapped_to(plug_out,config);
+
+        config = rotors->rotate_config(config);
 
         char reflect_out = reflector->reflect(rotor_out);
 
-       char rotor_back_out = rotors->input_to_back(rotor_config_tok,reflect_out);
+        char rotor_back_out = rotors->input_to_back(config,reflect_out);
 
         output.push_back(plugboard->find_char_mapped_to(rotor_back_out,plug_config_tok));
     }
