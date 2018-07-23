@@ -64,12 +64,9 @@ char *Rotors::input_to_string(vector<int> config, char *input) {
     return output;
 }
 
-char *Rotors::input_to_string_back(vector<int> config, char *input) {
+char Rotors::input_to_back(vector<int> config, char input) {
     vector<int> back_config = map_backward(config);
-    for (int i = 0; input[i] != '\0'; i++) {
-        output[i] = find_char_mapped_to(input[i], back_config);
-    }
-    return output;
+    return find_char_mapped_to(input, back_config);
 }
 
 char Rotors::find_char_mapped_to(char letter, vector<int> config) {

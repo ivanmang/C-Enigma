@@ -14,7 +14,7 @@ private:
 
 public:
     Reflector();
-    char* reflect(char* input);
+    char reflect(char input);
     char num_to_char(int num);
     int char_to_num(char c);
 };

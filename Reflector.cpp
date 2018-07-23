@@ -9,13 +9,10 @@ Reflector::Reflector() {
 
 }
 
-char* Reflector::reflect(char* input) {
-    for(int i =0;input[i]!='\0';i++){
-        int char_index = char_to_num(input[i]);
+char Reflector::reflect(char input) {
+        int char_index = char_to_num(input);
         int mapped_num = (char_index+13)%26;
-        output[i] = num_to_char(mapped_num);
-    }
-    return output;
+    return num_to_char(mapped_num);
 }
 
 
