@@ -80,7 +80,12 @@ int main(int argc, char **argv) {
 
         output.push_back(plugboard->find_char_mapped_to(rotor_back_out,plug_config_tok));
 
-        //config = rotors->rotate_config(config);
+        vector<int> *temp = rotors->rotate_config(config);
+
+        for(int b = 0; b < temp->size() ; b++){
+            config[b] = temp[b];
+        }
+
 
     }
 

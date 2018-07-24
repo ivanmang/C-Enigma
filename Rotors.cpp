@@ -107,16 +107,21 @@ vector<int>* Rotors::rotate_config(vector<int>* config) {
     vector<int>::iterator it;
     int rotor = 0;
     if(rotate_time % 26 == 0 && rotate_time >= 26){
-        rotor++;
+        int next_rotor = rotor + 1;
+        it = config[next_rotor].begin();
+        int last_elem = config[next_rotor].back();
+        config[next_rotor].pop_back();
+        config[next_rotor].insert(it,last_elem);
     }
     it = config[rotor].begin();
     int last_elem = config[rotor].back();
     config[rotor].pop_back();
     config[rotor].insert(it,last_elem);
-   // printf("time : %d \n",rotate_time);
     rotate_time++;
     return config;
 }
+
+
 
 void Rotors::print_map(vector<int> config) {
     printf("The config is:");
