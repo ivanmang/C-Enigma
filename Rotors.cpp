@@ -41,7 +41,7 @@ vector<int> Rotors::map_backward(vector<int> config_map) {
             int index = distance(config_map.begin(),num);
             back_map.push_back(index);
         }else{
-            cerr << "Missing elements when rotor map backwards";
+            //cerr << "Missing elements when rotor map backwards";
         }
 
     }
@@ -57,20 +57,29 @@ int Rotors::char_to_num(char c) {
     return (int) c - 65;
 }
 
-char *Rotors::input_to_string(vector<int> config, char *input) {
-    for (int i = 0; input[i] != '\0'; i++) {
-        //print_map(rotated_map);
-        //printf("input[i]: %c\n",input[i]);
-        output[i] = find_char_mapped_to(input[i], config);
-        //printf("output[i]: %c\n",output[i]);
-        //config = rotate_config(config);
+char Rotors::input_to_front(vector<int>* config, char input, int rotor_num) {
+    if(config[0].empty()){
+        return input;
     }
+    char output = input;
+    for(int i = 0; i < rotor_num; i++){
+        output = find_char_mapped_to(output,config[i]);
+    }
+
     return output;
 }
 
-char Rotors::input_to_back(vector<int> config, char input) {
-    vector<int> back_config = map_backward(config);
-    return find_char_mapped_to(input, back_config);
+char Rotors::input_to_back(vector<int>* config, char input, int rotor_num) {
+    vector<int> back_config[10];
+    for(int i = 0; i < rotor_num; i++){
+        back_config[i] = map_backward(config[i]);
+    }
+    char output = input;
+    for(int i = 0; i < rotor_num; i++){
+        output = find_char_mapped_to(output,back_config[i]);
+    }
+
+    return output;
 }
 
 char Rotors::find_char_mapped_to(char letter, vector<int> config) {
@@ -89,15 +98,15 @@ char Rotors::find_char_mapped_to(char letter, vector<int> config) {
     }
 }
 
-vector<int> Rotors::rotate_config(vector<int> config) {
-    if(config.empty()){
+vector<int>* Rotors::rotate_config(vector<int>* config) {
+    if(config[0].empty()){
         return config;
     }
     vector<int>::iterator it;
-    it = config.begin();
-    int last_elem = config.back();
-    config.pop_back();
-    config.insert(it,last_elem);
+    it = config[0].begin();
+    int last_elem = config[0].back();
+    config[0].pop_back();
+    config[0].insert(it,last_elem);
     return config;
 }
 
