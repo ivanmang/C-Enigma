@@ -17,6 +17,7 @@ Rotors::Rotors() {
 
 
 vector<int> Rotors::tokeniser(char* rotor_config) {
+    config_map.clear();
     char* rotor_token = strtok(rotor_config," ");
     int i = 0;
     while(rotor_token){
@@ -76,7 +77,7 @@ char Rotors::input_to_back(vector<int>* config, char input, int rotor_num) {
     }
     char output = input;
     for(int i = 0; i < rotor_num; i++){
-        output = find_char_mapped_to(output,back_config[i]);
+        output = find_char_mapped_to(output,back_config[rotor_num-i-1]);
     }
 
     return output;
