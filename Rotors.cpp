@@ -64,6 +64,7 @@ char Rotors::input_to_front(vector<int>* config, char input, int rotor_num) {
     }
     char output = input;
     for(int i = 0; i < rotor_num; i++){
+        //print_map(config[i]);
         output = find_char_mapped_to(output,config[i]);
     }
 
@@ -104,10 +105,16 @@ vector<int>* Rotors::rotate_config(vector<int>* config) {
         return config;
     }
     vector<int>::iterator it;
-    it = config[0].begin();
-    int last_elem = config[0].back();
-    config[0].pop_back();
-    config[0].insert(it,last_elem);
+    int rotor = 0;
+    if(rotate_time % 26 == 0 && rotate_time >= 26){
+        rotor++;
+    }
+    it = config[rotor].begin();
+    int last_elem = config[rotor].back();
+    config[rotor].pop_back();
+    config[rotor].insert(it,last_elem);
+   // printf("time : %d \n",rotate_time);
+    rotate_time++;
     return config;
 }
 

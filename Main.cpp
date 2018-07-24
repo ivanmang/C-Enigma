@@ -45,9 +45,6 @@ int main(int argc, char **argv) {
     }
 
 
-
-
-
     string input;
     string output;
     cin >> ws >>input;

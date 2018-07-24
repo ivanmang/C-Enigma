@@ -13,7 +13,7 @@ class Rotors {
 private:
     vector<int> config_map;
     vector<int> back_map;
-    char output[100];
+    int rotate_time = 0;
 
 public:
     Rotors();
