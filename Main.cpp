@@ -74,9 +74,15 @@ int main(int argc, char **argv) {
 
         char rotor_out = rotors->input_to_front(config,plug_out,rotor_num);
 
+        //printf("rotor_out: %c\n",rotor_out);
+
         char reflect_out = reflector->reflect(rotor_out);
 
+        //printf("reflect out: %c\n",reflect_out);
+
         char rotor_back_out = rotors->input_to_back(config,reflect_out, rotor_num);
+
+        //printf("rotor_back_out: %c\n",rotor_back_out);
 
         output.push_back(plugboard->find_char_mapped_to(rotor_back_out,plug_config_tok));
 

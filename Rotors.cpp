@@ -109,14 +109,14 @@ vector<int>* Rotors::rotate_config(vector<int>* config) {
     if(rotate_time % 26 == 0 && rotate_time >= 26){
         int next_rotor = rotor + 1;
         it = config[next_rotor].begin();
-        int last_elem = config[next_rotor].back();
-        config[next_rotor].pop_back();
-        config[next_rotor].insert(it,last_elem);
+        int first_elem = config[next_rotor].front();
+        config[next_rotor].erase(it,it+1);
+        config[next_rotor].push_back(first_elem);
     }
     it = config[rotor].begin();
-    int last_elem = config[rotor].back();
-    config[rotor].pop_back();
-    config[rotor].insert(it,last_elem);
+    int first_elem = config[rotor].front();
+    config[rotor].erase(it,it+1);
+    config[rotor].push_back(first_elem);
     rotate_time++;
     return config;
 }
