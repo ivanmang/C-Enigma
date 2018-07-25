@@ -24,7 +24,7 @@ public:
     char input_to_front(vector<int>* config, char input ,int rotor_num);
     char input_to_back(vector<int>* config, char input, int rotor_num);
     char find_char_mapped_to(char letter, vector<int> config);
-    vector<int>* rotate_config(vector<int>* config);
+    vector<int>* rotate_config(vector<int>* config, int rotor_num);
     void print_map(vector<int> config);
 
 };
